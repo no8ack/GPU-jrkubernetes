@@ -84,6 +84,58 @@ $ systemctl daemon-reload
 $ systemctl restart docker
 
 
+# 3. k8s 설치 (master, client 둘다)
+
+마스터 ID : test 
+서버 IP : 220.67.133.XXX
+
+$ sudo apt install apt-transport-https 
+$ sudo curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add
+$ sudo add-apt-repository "deb https://apt.kubernetes.io/ kubernetes-$(lsb_release -cs) main" 
+$ sudo apt update 
+
+$ sudo apt install kubelet kubeadm kubectl kubernetes-cni
+$ sudo apt install kubelet=1.14.1-00 kubeadm=1.14.1-00 kubectl=1.14.1-00 kubernetes-cni=0.7.5-00
+쿠버네티스 버전을 다르게 하려면 위와 같이 하면 된다.
+
+Swap을 사용하는 경우 k8s 클러스터가 구동되지 않습니다.
+swapoff 명령어를 사용하거나 /etc/fstab 파일에서 swap부분을 주석처리(재부팅 필요)합니다.
+
+$ swapoff -a && sed -i '/swap/d' /etc/fstab 
+$ sudo reboot
+
+3-1) 마스터만 설치
+root@node1:~# export API_ADDR="220.67.133.XXX" # Master 서버 외부 IP
+root@node1:~# export DNS_DOMAIN="k8s.local"
+root@node1:~# export POD_NET="10.100.0.0/16" # k8s 클러스터 POD Network CIDR -> 이거 calico 서버 ip
+root@node1:~# sysctl net.bridge.bridge-nf-call-iptables=1
+root@node1:~# kubeadm init --pod-network-cidr ${POD_NET} \
+--apiserver-advertise-address ${API_ADDR} \
+--service-dns-domain "${DNS_DOMAIN}"  \
+--kubernetes-version=v1.15.3   (잘못 설치했는지 패스 잘못잡아서 직접 설정해줌)
+
+xxxxxxxxx 뭐라뭐라 나오고 마지막에
+
+kubeadm join 192.168.56.2:6443 --token kakych.0ebc0g9vbl6xo8hp \
+    --discovery-token-ca-cert-hash sha256:8a0feaa2cea150cadb56f36f39c18cc5650852faee252092d39298ccda928344
+
+이거 나오는데 이거 저장해야합니다. client가 서버에 접속하는 passwd 입니다.
+k8s 클러스터 관리 사용자 계정인 k8s-admin 으로 서버에 로그인 합니다.
+
+
+
+- k8s Master 노드 접속하기 위한 설정
+k8s-admin@node1:~$ \rm -rf $HOME/.k8s
+k8s-admin@node1:~$ mkdir -p $HOME/.k8s
+k8s-admin@node1:~$ sudo cp -i /etc/kubernetes/admin.conf $HOME/.k8s/config
+k8s-admin@node1:~$ sudo chown $(id -u):$(id -g) $HOME/.k8s/config
+k8s-admin@node1:~$ export KUBECONFIG=$HOME/.k8s/config
+k8s-admin@node1:~$ echo "export KUBECONFIG=$HOME/.k8s/config" | tee -a ~/.bashrc
+
+이건 꼭 해줘야됨. kubeadm reset으로 리셋했을 때, 이거 안해주면 calico 접속할 때 authentication에서 에러남
+
+
+
 
 
 
