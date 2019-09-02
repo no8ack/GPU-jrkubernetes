@@ -20,7 +20,7 @@ $ sudo apt-get remove docker docker-engine docker.i docker-ce docker-ce-cli
 2) 도커 설치 
 
 $ sudo apt-get update
-$ sudo apt-get install \\
+$ sudo apt-get install \
   apt-transport-https \
   ca-certificates \
   curl \
