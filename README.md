@@ -77,9 +77,11 @@ EOF
 
 
 - Docker Service 설정 디렉토리 생성
+
 $ mkdir -p /etc/systemd/system/docker.service.d
 
 - Docker Service 재시작
+
 $ systemctl daemon-reload
 $ systemctl restart docker
 
