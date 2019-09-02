@@ -1,6 +1,6 @@
 # jrkubernetes
 
-1. 작업자 생성
+# 1. 작업자 생성
 
 $ sudo apt-get update
 $ sudo apt-get upgrade
@@ -11,7 +11,7 @@ $ sudo useradd -s /bin/bash -m k8s-admin
 $ sudo passwd k8s-admin
 $ sudo usermod -aG sudo k8s-admin
 
-2. 도커 설치(master, client 둘다)
+# 2. 도커 설치(master, client 둘다)
 
 1) 도커 삭제
 
@@ -60,7 +60,8 @@ $ sudo apt-get install docker-ce=18.06.3~ce~3-0~ubuntu # validated 버전 18.06(
 현재로는 이 버전이 stable 이다.
 
 $ sudo usermod -aG docker k8s-admin
-# Docker Service의 cgroup driver를 systemd로 변경
+
+Docker Service의 cgroup driver를 systemd로 변경
   이 부분은 permission 에러가 날 수 있으니 sudo vi로 해서 새로 생성할 것.
 $ cat > /etc/docker/daemon.json <<EOF
 {
@@ -72,8 +73,18 @@ $ cat > /etc/docker/daemon.json <<EOF
   "storage-driver": "overlay2"
 }
 EOF
-# Docker Service 설정 디렉토리 생성
+
+
+
+- Docker Service 설정 디렉토리 생성
 $ mkdir -p /etc/systemd/system/docker.service.d
-# Docker Service 재시작
+
+- Docker Service 재시작
 $ systemctl daemon-reload
 $ systemctl restart docker
+
+
+
+
+
+
