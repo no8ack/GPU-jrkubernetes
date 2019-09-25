@@ -88,21 +88,17 @@ $ vi /etc/docker/daemon.json
   ```
 $ mkdir -p /etc/systemd/system/docker.service.d
 ```
-
   ```
 $ systemctl daemon-reload
   ```
 ```
 $ systemctl restart docker
 ```
-<br>
 **- Nvidia docker 설치**
-<br>
 ```
 $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
   sudo apt-key add -
 ```
-
 ```
 $ curl -s -L https://nvidia.github.io/nvidia-docker/ubuntu16.04/amd64/nvidia-docker.list | \
   sudo tee /etc/apt/sources.list.d/nvidia-docker.list
