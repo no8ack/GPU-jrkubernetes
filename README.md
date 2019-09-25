@@ -204,7 +204,6 @@ $ k8s-admin@node1:~# export KUBECONFIG=$HOME/.k8s/config
 $ k8s-admin@node1:~# echo "export KUBECONFIG=$HOME/.k8s/config" | tee -a ~/.bashrc
 ```
 **- Calico Pod Network 배포하기 **
-CNI(Container Network Interface)는 컨테이너와 컨테이너 네트워크 구현체 사이의 표준 API 입니다.
 ```
 $ k8s-admin@node1:~# wget https://docs.projectcalico.org/v3.5/getting-started/kubernetes/installation/hosted/etcd.yaml
 ```
@@ -214,7 +213,6 @@ $ k8s-admin@node1:~# wget https://docs.projectcalico.org/v3.5/getting-started/ku
 ```
 $ k8s-admin@node1:~# vi calico.yaml
 ```
-
  - name: CALICO_IPV4POOL_CIDR <br>
     　　　　　　　 value: "10.100.0.0/16" # POD Network CIDR로 변경합니다
               
