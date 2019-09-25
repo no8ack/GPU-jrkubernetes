@@ -261,6 +261,6 @@ $ k8s-admin@node1:~# kubectl get no
 |node2|READY| none | 11m 21s | v1.15.3 |
 
 
-
+</ol>
 
 
