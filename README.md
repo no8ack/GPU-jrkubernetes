@@ -1,7 +1,7 @@
 ## Kubernetes
 
-<ol>
-   <li>**작업자 생성** </li>
+
+1. **작업자 생성**
 ```
 $ sudo apt-get update
 ```
@@ -260,7 +260,5 @@ $ k8s-admin@node1:~# kubectl get no
 |node1|READY| master | 20m | v1.15.3 |
 |node2|READY| none | 11m 21s | v1.15.3 |
 
-
-</ol>
 
 
