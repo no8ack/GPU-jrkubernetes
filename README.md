@@ -25,6 +25,7 @@ $ sudo usermod -aG sudo k8s-admin
 ```
 <br>
 2. **docker 설치 (master, client) & Nvidia-docker2  설치**
+
 ```
 $ sudo apt-get update
 ```
