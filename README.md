@@ -1,4 +1,4 @@
-##Kubernetes
+## Kubernetes
 
 
 1. **작업자 생성**
@@ -23,7 +23,6 @@ $ sudo passwd k8s-admin
 ```
 $ sudo usermod -aG sudo k8s-admin
 ```
-<br>
 2. **docker 설치 (master, client) & Nvidia-docker2  설치**
 
 ```
@@ -119,7 +118,6 @@ $ docker pull nvidia/cuda
 ```
 $ docker run --runtime=nvidia --rm -ti nvidia/cuda nvidia-smi
 ```
-<br>
 3. **k8s 설치 (master, client)**
 ```
 $ sudo apt install apt-transport-https 
@@ -247,7 +245,6 @@ Nvidia device를 사용하기 위해서 pod을 추가해줍니다.
 ```
 $ kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta/nvidia-device-plugin.yml
 ```
-<br>
 6. **Worker node**
 
  아까 저장했던  kubeadm join 192.168.56.2:6443 --token xxxxx을 입력하면 서버로 접속이 됩니다.
