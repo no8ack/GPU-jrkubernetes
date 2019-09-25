@@ -159,7 +159,7 @@ $ swapoff -a && sed -i '/swap/d' /etc/fstab
 $ sudo reboot
 ```
 
-4. ** Master node**
+4. **Master node**
 
 ```
 $ root@node1:~# export API_ADDR="127.0.0.1" # Master 서버 외부 IP
@@ -183,7 +183,7 @@ $ root@node1:~# kubeadm init --pod-network-cidr ${POD_NET} \
   init을 하고 나면 뒤에 kubeadm join 192.168.56.2:6443 --token xxxxx라고 나옵니다.
 kubeadm 부터 끝까지 따로 저장해야 합니다. node들이 서버에 접속할 때 사용됩니다.
 
-5. ** k8s 클러스터 관리 사용자 계정인 k8s-admin 으로 서버에 로그인. **
+5. **k8s 클러스터 관리 사용자 계정인 k8s-admin 으로 서버에 로그인. **
 
  ```
 $ k8s-admin@node1:~#
