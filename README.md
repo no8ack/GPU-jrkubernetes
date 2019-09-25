@@ -158,7 +158,6 @@ $ swapoff -a && sed -i '/swap/d' /etc/fstab
 ```
 $ sudo reboot
 ```
-<br>
 4. ** Master node**
 ```
 $ root@node1:~# export API_ADDR="127.0.0.1" # Master 서버 외부 IP
@@ -180,8 +179,7 @@ $ root@node1:~# kubeadm init --pod-network-cidr ${POD_NET} \
 ```
 
   init을 하고 나면 뒤에 kubeadm join 192.168.56.2:6443 --token xxxxx라고 나옵니다.
-kubeadm 부터 끝까지 따로 저장해야 합니다. node들이 서버에 접속할 때 사용됩니다.
-<br>
+kubeadm 부터 끝까지 따로 저장해야 합니다. node들이 서버에 접속할 때 사용됩니다.>
 5. ** k8s 클러스터 관리 사용자 계정인 k8s-admin 으로 서버에 로그인. **
 
  ```
@@ -205,7 +203,7 @@ $ k8s-admin@node1:~# export KUBECONFIG=$HOME/.k8s/config
 ```
 $ k8s-admin@node1:~# echo "export KUBECONFIG=$HOME/.k8s/config" | tee -a ~/.bashrc
 ```
-<br> **Calico Pod Network 배포하기 **
+**- Calico Pod Network 배포하기 **
 CNI(Container Network Interface)는 컨테이너와 컨테이너 네트워크 구현체 사이의 표준 API 입니다.
 ```
 $ k8s-admin@node1:~# wget https://docs.projectcalico.org/v3.5/getting-started/kubernetes/installation/hosted/etcd.yaml
@@ -217,7 +215,7 @@ $ k8s-admin@node1:~# wget https://docs.projectcalico.org/v3.5/getting-started/ku
 $ k8s-admin@node1:~# vi calico.yaml
 ```
 
- - name: CALICO_IPV4POOL_CIDR
+ - name: CALICO_IPV4POOL_CIDR <br>
     　　　　　　　 value: "10.100.0.0/16" # POD Network CIDR로 변경합니다
               
  ```
